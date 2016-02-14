@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Penny Pincher</string>
+
+    <string name="enter_price">Enter the price</string>
+    <string name ="enter_discount">Enter the discount (e.g. 20 for 20%) </string>
+    <string name="button_calculate">Calculate Price</string>
+
+    <!-- Colors for Calculate price button  -->
+    <!--<string name="price_background">#606060</string>-->
+    <!--<string name="price_button_text">#0099ff</string>-->
+
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_dispatch_message">My Message</string>
+    <string name="title_activity_display_message">DisplayMessageActivity</string>
+</resources>
