@@ -33,9 +33,8 @@
         android:layout_width="105dp"
         android:layout_height="wrap_content"
         android:text="@string/button_calculate"
-        android:id="@+id/button"
+        android:id="@+id/price_button"
         android:layout_gravity="center"
-        android:onClick="calculatePrice"
         android:textAllCaps="false"
         android:background="@color/priceButtonBackground"
         android:textColor="@color/priceButtonText"/>

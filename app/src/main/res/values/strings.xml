@@ -2,12 +2,14 @@
     <string name="app_name">Penny Pincher</string>
 
     <string name="enter_price">Enter the price</string>
-    <string name ="enter_discount">Enter the discount (e.g. 20 for 20%) </string>
+    <string name="enter_discount">Enter the discount (e.g. 20 for 20%) </string>
     <string name="button_calculate">Calculate Price</string>
 
-    <!-- Colors for Calculate price button  -->
-    <!--<string name="price_background">#606060</string>-->
-    <!--<string name="price_button_text">#0099ff</string>-->
+    <!-- Strings for alert dialog -->
+    <string name="incorrect_price">You must enter a correct price</string>
+    <string name="incorrect_discount">You must enter a correct discount amount</string>
+    <string name="incorrect_input">You must enter a correct price and discount amount</string>
+    <string name="ok">Ok</string>
 
 
     <string name="action_settings">Settings</string>
