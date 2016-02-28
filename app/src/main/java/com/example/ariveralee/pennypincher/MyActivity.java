@@ -12,12 +12,14 @@ import android.support.v7.app.AlertDialog;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MyActivity extends AppCompatActivity {
     // private class member
@@ -99,14 +101,12 @@ public class MyActivity extends AppCompatActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MyActivity.this);
         // Resource ID is int, and it doesn't instantiate an object of String at Runtime, so we do it
         alertDialogBuilder.setMessage(this.getString(resourceId));
-        alertDialogBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                MyActivity.this.onResume();
-            }
-        });
 
         mAlertDialog = alertDialogBuilder.create();
         mAlertDialog.show();
+        // allows for centering of message in alert dialog
+        TextView messageView = (TextView)mAlertDialog.findViewById(android.R.id.message);
+        messageView.setGravity(Gravity.CENTER);
     }
 
     /**
