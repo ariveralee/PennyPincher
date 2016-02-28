@@ -9,7 +9,8 @@
     <string name="incorrect_price">You must enter a correct price</string>
     <string name="incorrect_discount">You must enter a correct discount amount</string>
     <string name="incorrect_input">You must enter a correct price and discount amount</string>
-    <string name="ok">Ok</string>
+    <string name="over_100">You cannot enter a discount over 100%</string>
+    <string name="over_2decimals">You cannot enter more than two decimal places.</string>
 
 
     <string name="action_settings">Settings</string>

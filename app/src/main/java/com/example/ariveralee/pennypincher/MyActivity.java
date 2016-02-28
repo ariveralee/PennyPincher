@@ -1,8 +1,6 @@
 package com.example.ariveralee.pennypincher;
 
 
-
-
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -20,6 +18,9 @@ import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 public class MyActivity extends AppCompatActivity {
     // private class member
@@ -96,7 +97,6 @@ public class MyActivity extends AppCompatActivity {
      * @param resourceId
      */
     public void dialogCreator(int resourceId) {
-
         // Use Builder class for Convenient dialog construction
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MyActivity.this);
         // Resource ID is int, and it doesn't instantiate an object of String at Runtime, so we do it
@@ -105,7 +105,7 @@ public class MyActivity extends AppCompatActivity {
         mAlertDialog = alertDialogBuilder.create();
         mAlertDialog.show();
         // allows for centering of message in alert dialog
-        TextView messageView = (TextView)mAlertDialog.findViewById(android.R.id.message);
+        TextView messageView = (TextView) mAlertDialog.findViewById(android.R.id.message);
         messageView.setGravity(Gravity.CENTER);
     }
 
@@ -131,19 +131,27 @@ public class MyActivity extends AppCompatActivity {
         } else if (!discountString.matches(".*\\d+.*")) {
             dialogCreator(R.string.incorrect_discount);
             return;
-
-        } else {
-            // if we get here, then it's time to calculate dat discount
-            Intent intent = new Intent(this, DisplayMessageActivity.class);
-            double item_price = Double.parseDouble(itemPriceString);
-            double discount_amount = Double.parseDouble(discountString);
-            double new_price = calculateDiscount(item_price, discount_amount);
-
-            Bundle b = new Bundle();
-            b.putDouble("NEW_PRICE", new_price);
-            intent.putExtras(b);
-            startActivity(intent);
         }
+        // if we reach here, then it appears that we have correct input, let's check a few other things
+        if (Double.parseDouble(discountString) > 100.00) {
+            dialogCreator(R.string.over_100);
+            return;
+        }
+        // formatting so we don't deal with anything past 2 decimal places
+        NumberFormat formatter = new DecimalFormat("#0.00");
+        // if we get here, then it's time to calculate dat discount
+        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        double item_price = Double.parseDouble(itemPriceString);
+        formatter.format(item_price);
+        double discount_amount = Double.parseDouble(discountString);
+        formatter.format(discount_amount);
+        double new_price = calculateDiscount(item_price, discount_amount);
+
+        Bundle b = new Bundle();
+        b.putDouble("NEW_PRICE", new_price);
+        intent.putExtras(b);
+        startActivity(intent);
+
     }
 
     /**

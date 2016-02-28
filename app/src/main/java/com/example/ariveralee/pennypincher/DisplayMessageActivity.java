@@ -1,6 +1,6 @@
 package com.example.ariveralee.pennypincher;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,7 +10,11 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 public class DisplayMessageActivity extends AppCompatActivity {
+    // private variable for formatter
+    private static DecimalFormat REAL_FORMATTER = new DecimalFormat("0.##");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +35,10 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         double new_price = b.getDouble("NEW_PRICE");
-        String new_price_str = Double.toString(new_price);
+
         TextView textView = new TextView(this);
         textView.setTextSize(40);
-        textView.setText(new_price_str);
+        textView.setText(REAL_FORMATTER.format(new_price));
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.content);
         layout.addView(textView);
     }
