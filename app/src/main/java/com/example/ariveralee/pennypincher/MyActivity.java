@@ -2,6 +2,7 @@ package com.example.ariveralee.pennypincher;
 
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,6 +18,8 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -25,6 +28,9 @@ import java.text.NumberFormat;
 public class MyActivity extends AppCompatActivity {
     // private class member
     private AlertDialog mAlertDialog;
+    private static DecimalFormat mFormatter = new DecimalFormat("0.00");
+    private FrameLayout mLayout;
+    private TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +38,13 @@ public class MyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        // layout for the price
+        mLayout = (FrameLayout) findViewById(R.id.content);
+        mTextView = new TextView(this);
+        mTextView.setTextSize(40);
         // instantiate a button for calculating the price
-        Button pricebutton = (Button) findViewById(R.id.price_button);
-        pricebutton.setOnClickListener(new Button.OnClickListener() {
+        Button priceButton = (Button) findViewById(R.id.price_button);
+        priceButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // get input and attempt to calculate price
@@ -88,7 +97,6 @@ public class MyActivity extends AppCompatActivity {
         processInput(itemPriceString, discountString);
     }
 
-
     /**
      * This method takes the resource id passed in from process input and prints an alert dialog
      * message. This allpws for a generic method to create dialog messages, reducing the amount
@@ -140,18 +148,14 @@ public class MyActivity extends AppCompatActivity {
         // formatting so we don't deal with anything past 2 decimal places
         NumberFormat formatter = new DecimalFormat("#0.00");
         // if we get here, then it's time to calculate dat discount
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
         double item_price = Double.parseDouble(itemPriceString);
         formatter.format(item_price);
         double discount_amount = Double.parseDouble(discountString);
         formatter.format(discount_amount);
         double new_price = calculateDiscount(item_price, discount_amount);
 
-        Bundle b = new Bundle();
-        b.putDouble("NEW_PRICE", new_price);
-        intent.putExtras(b);
-        startActivity(intent);
-
+        // method to set the text view for the price.
+        setPriceTextView(new_price);
     }
 
     /**
@@ -170,6 +174,26 @@ public class MyActivity extends AppCompatActivity {
         item_price = (item_price * fullPercentage) / 100.00;
 
         return item_price;
+
+    }
+
+    /**
+     * This function takes the new price and attaches it to the text view object.
+     *
+     * @param new_price
+     */
+    public void setPriceTextView(double new_price) {
+        // If we have a child count greater than 0 then there's a textview attached so we remove it
+        // after, we attach our new view. This ensures that only one text view for the price is
+        // attached at a time for this frame layout.
+        if (mLayout.getChildCount() > 0) {
+            mLayout.removeView(mTextView);
+        }
+        mTextView.setText("The new price is:\n$" + mFormatter.format(new_price));
+        mTextView.setTextSize(24);
+        mTextView.setTextColor(Color.parseColor("#00cc00"));
+        mLayout.addView(mTextView);
+        mTextView.setGravity(Gravity.CENTER);
 
     }
 }

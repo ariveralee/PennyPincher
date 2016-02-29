@@ -4,8 +4,11 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <!-- -->
+    <!--Colors for button -->
     <color name="priceButtonBackground">#686868</color>
     <color name="priceButtonText">#0099ff</color>
+
+    <!-- Colors for price text -->
+    <color name="priceText">#00cc00</color>
 
 </resources>

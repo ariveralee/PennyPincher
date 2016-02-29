@@ -12,7 +12,6 @@
     <string name="over_100">You cannot enter a discount over 100%</string>
     <string name="over_2decimals">You cannot enter more than two decimal places.</string>
 
-
     <string name="action_settings">Settings</string>
     <string name="title_activity_dispatch_message">My Message</string>
     <string name="title_activity_display_message">DisplayMessageActivity</string>
