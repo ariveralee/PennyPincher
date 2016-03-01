@@ -35,8 +35,9 @@
         android:text="@string/button_calculate"
         android:id="@+id/price_button"
         android:layout_gravity="center"
+        android:elevation="8dp"
         android:textAllCaps="false"
-        android:background="@color/priceButtonBackground"
+        android:background="@drawable/button_shape"
         android:textColor="@color/priceButtonText"/>
 
     </FrameLayout>
